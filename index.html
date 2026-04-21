@@ -387,26 +387,9 @@
             filter: blur(0);
         }
 
-        /* ============ CUSTOM CURSOR (Desktop) ============ */
-        @media (pointer: fine) {
-            .custom-cursor {
-                width: 20px;
-                height: 20px;
-                border: 2px solid #c8a27a;
-                border-radius: 50%;
-                position: fixed;
-                pointer-events: none;
-                z-index: 99999;
-                transition: transform 0.15s, width 0.2s, height 0.2s;
-                mix-blend-mode: difference;
-            }
+     
 
-            .custom-cursor.hovering {
-                width: 50px;
-                height: 50px;
-                background: rgba(200, 162, 122, 0.1);
-            }
-        }
+        
 
         /* ============ TESTIMONIAL MARQUEE ============ */
         .marquee-track {
@@ -509,8 +492,7 @@
 </head>
 <body class="font-sans antialiased bg-cream-50 dark:bg-dark-400 text-forest-900 dark:text-cream-100 transition-colors duration-500">
 
-    <!-- Custom Cursor (Desktop) -->
-    <div class="custom-cursor hidden lg:block" id="customCursor"></div>
+ 
 
     <!-- Theme Initialization -->
     <script>
@@ -1780,48 +1762,10 @@
             reveals.forEach(el => observer.observe(el));
         }
 
-        // ==================== CUSTOM CURSOR ====================
-        function initCustomCursor() {
-            const cursor = document.getElementById('customCursor');
-            if (!cursor) return;
+   
             
-            let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
-            
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-            });
-            
-            function animateCursor() {
-                cursorX += (mouseX - cursorX) * 0.15;
-                cursorY += (mouseY - cursorY) * 0.15;
-                cursor.style.left = cursorX - 10 + 'px';
-                cursor.style.top = cursorY - 10 + 'px';
-                requestAnimationFrame(animateCursor);
-            }
-            animateCursor();
-            
-            // Hover states
-            document.querySelectorAll('a, button, .magnetic-btn').forEach(el => {
-                el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
-                el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
-            });
-        }
-
-        // ==================== MAGNETIC BUTTONS ====================
-        function initMagneticButtons() {
-            document.querySelectorAll('.magnetic-btn').forEach(btn => {
-                btn.addEventListener('mousemove', (e) => {
-                    const rect = btn.getBoundingClientRect();
-                    const x = e.clientX - rect.left - rect.width / 2;
-                    const y = e.clientY - rect.top - rect.height / 2;
-                    btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
-                });
-                btn.addEventListener('mouseleave', () => {
-                    btn.style.transform = 'translate(0, 0)';
-                });
-            });
-        }
+      
+      
 
         // ==================== 3D TILT CARDS ====================
         function initTiltCards() {
